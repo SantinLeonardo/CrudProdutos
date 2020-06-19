@@ -50,6 +50,7 @@ public class ProdutoCrud extends javax.swing.JDialog {
         jScrollPane1 = new javax.swing.JScrollPane();
         uiTabela = new javax.swing.JTable();
         uiFiltroId = new javax.swing.JTextField();
+        uiFiltroNome = new javax.swing.JTextField();
         uiEdicao = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         uiSalvar = new javax.swing.JButton();
@@ -156,6 +157,12 @@ public class ProdutoCrud extends javax.swing.JDialog {
             }
         });
 
+        uiFiltroNome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                uiFiltroNomeActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout uiConsultaLayout = new javax.swing.GroupLayout(uiConsulta);
         uiConsulta.setLayout(uiConsultaLayout);
         uiConsultaLayout.setHorizontalGroup(
@@ -164,6 +171,8 @@ public class ProdutoCrud extends javax.swing.JDialog {
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 432, Short.MAX_VALUE)
             .addGroup(uiConsultaLayout.createSequentialGroup()
                 .addComponent(uiFiltroId, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(uiFiltroNome, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         uiConsultaLayout.setVerticalGroup(
@@ -171,7 +180,9 @@ public class ProdutoCrud extends javax.swing.JDialog {
             .addGroup(uiConsultaLayout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(uiFiltroId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(uiConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(uiFiltroId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(uiFiltroNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(13, 13, 13)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE))
         );
@@ -407,6 +418,15 @@ public class ProdutoCrud extends javax.swing.JDialog {
         atualizaLista();
     }//GEN-LAST:event_uiFiltroIdActionPerformed
 
+    private void uiFiltroNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uiFiltroNomeActionPerformed
+        if (uiFiltroNome.getText().trim().length() > 0) {
+            query1 = entityManager1.createQuery("select o from Produto o where upper(o.nome) like upper('%" + uiFiltroNome.getText().trim() + "%') ");
+        } else {
+            query1 = entityManager1.createQuery("select o from Produto o ");
+        }
+        atualizaLista(); 
+    }//GEN-LAST:event_uiFiltroNomeActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -471,6 +491,7 @@ public class ProdutoCrud extends javax.swing.JDialog {
     private javax.swing.JTextField uiEstoqueMinimo;
     private javax.swing.JButton uiExcluir;
     private javax.swing.JTextField uiFiltroId;
+    private javax.swing.JTextField uiFiltroNome;
     private javax.swing.JButton uiIncluir;
     private javax.swing.JTextField uiNome;
     private javax.swing.JTabbedPane uiPaineis;
